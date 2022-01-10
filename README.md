@@ -6,6 +6,7 @@
 
 - [Road 2 Coding](https://www.r2coding.com/#/)
 - [Java学习路线](https://www.bilibili.com/read/cv5216534)
+- [JavaGuide](https://javaguide.cn/java/basis/java基础知识总结/#)
 
 
 
@@ -13,7 +14,7 @@
 
 正如标题，就是为了找工作，填补那可怜的基础，必须开始全方位的自习了。
 
-现在掌握的知识，可能还不如太平洋里的一座孤岛上的一粒沙。迷茫的是根本不知道怎么开始、从何下手，开始了又怕根本坚持不了几天。所以拉去了上面一些学习路线的文章，现以 [Road 2 Coding](https://www.r2coding.com/#/) 为参考，开始一系列内容的学习，并将笔记记在这个文件下面。
+现在掌握的知识，可能还不如太平洋里的一座孤岛上的一粒沙。迷茫的是根本不知道怎么开始、从何下手，开始了又怕根本坚持不了几天。所以拉去了上面一些学习路线的文章，现以 ~~[Road 2 Coding](https://www.r2coding.com/#/)~~ [JavaGuide](https://javaguide.cn/java/basis/java基础知识总结/#)为参考，开始一系列内容的学习，并将笔记记在这个文件下面。
 
 
 
