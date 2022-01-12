@@ -13,7 +13,9 @@ public class UserTest {
 
         // 2. 获取对象
         User user = context.getBean("user", User.class);
-
         user.print();
+
+        User user2 = context.getBean("user", User.class);
+        user2.print();
     }
 }
