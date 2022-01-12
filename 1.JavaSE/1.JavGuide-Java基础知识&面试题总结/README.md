@@ -40,7 +40,7 @@ JVM 可以理解的代码就叫做字节码（即扩展名为 `.class` 的文件
 - Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。
 - 由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。
 
-![Java程序转变为机器代码的过程](https://javaguide.cn/assets/img/java%E7%A8%8B%E5%BA%8F%E8%BD%AC%E5%8F%98%E4%B8%BA%E6%9C%BA%E5%99%A8%E4%BB%A3%E7%A0%81%E7%9A%84%E8%BF%87%E7%A8%8B.3dbbbc5a.png)
+![Java程序转变为机器代码的过程](README.assets/java程序转变为机器代码的过程.3dbbbc5a.png)
 
 
 
@@ -191,7 +191,7 @@ Java 的泛型是伪泛型，这是因为 Java 在运行期间，所有的泛型
 
 ## 4.2 成员变量和局部变量的区别
 
-![image-20220112092932973](D:\data\r2coding\1.JavaSE\1.JavGuide-Java基础知识&面试题总结\README.assets\image-20220112092932973.png)
+![image-20220112092932973](README.assets\image-20220112092932973.png)
 
 
 
@@ -381,4 +381,4 @@ protected void finalize() throws Throwable { }
 
 引用拷贝就是两个不同的引用指向同一个对象。
 
-![img](https://javaguide.cn/assets/img/shallow&deep-copy.64ee0760.png)
+![img](README.assets/shallow&deep-copy.64ee0760.png)

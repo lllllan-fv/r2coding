@@ -12,11 +12,11 @@
 
 **JDK 1.8 之前：**
 
-![img](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\JVM运行时数据区域.150c33e1.png)
+![img](Java内存区域详解.assets\JVM运行时数据区域.150c33e1.png)
 
 **JDK 1.8 ：**
 
-![img](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\Java运行时数据区域JDK1.8.37016205.png)
+![img](Java内存区域详解.assets\Java运行时数据区域JDK1.8.37016205.png)
 
 **线程私有的：**
 
@@ -60,7 +60,7 @@
 - **`StackOverFlowError`：** 若 Java 虚拟机栈的内存大小不允许动态扩展，那么当线程请求栈的深度超过当前 Java 虚拟机栈的最大深度的时候，就抛出 StackOverFlowError 错误。
 - **`OutOfMemoryError`：** Java 虚拟机栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出`OutOfMemoryError`异常。
 
-![img](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\《深入理解虚拟机》第三版的第2章-虚拟机栈.5cc9c70c.png)
+![img](Java内存区域详解.assets\《深入理解虚拟机》第三版的第2章-虚拟机栈.5cc9c70c.png)
 
 Java 虚拟机栈也是线程私有的，每个线程都有各自的 Java 虚拟机栈，而且随着线程的创建而创建，随着线程的死亡而死亡。
 
@@ -101,11 +101,11 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 2. 老生代(Old Generation)
 3. 永生代(Permanent Generation)
 
-![JVM堆内存结构-JDK7](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\JVM堆内存结构-JDK7.7d9166eb.png)
+![JVM堆内存结构-JDK7](Java内存区域详解.assets\JVM堆内存结构-JDK7.7d9166eb.png)
 
 JDK 8 版本之后方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是元空间，元空间使用的是直接内存。
 
-![JVM堆内存结构-JDK8](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\JVM堆内存结构-jdk8.919b9959.png)
+![JVM堆内存结构-JDK8](Java内存区域详解.assets\JVM堆内存结构-jdk8.919b9959.png)
 
 **上图所示的 Eden 区、两个 Survivor 区都属于新生代（为了区分，这两个 Survivor 区域按照顺序被命名为 from 和 to），中间一层属于老年代。**
 
@@ -159,7 +159,7 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
 
 ### 2.5.3 为什么要将永久代 (PermGen) 替换为元空间 (MetaSpace) 呢?
 
-![img](https://img-blog.csdnimg.cn/20210425134508117.png)
+![img](Java内存区域详解.assets/20210425134508117.png)
 
 1. 整个永久代有一个 JVM 本身设置的固定大小上限，无法进行调整，而元空间使用的是直接内存，受本机可用内存的限制，虽然元空间仍旧可能溢出，但是比原来出现的几率会更小。
 
@@ -202,7 +202,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 ## 3.1 对象的创建
 
-![Java创建对象的过程](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\Java创建对象的过程.dbe33c41.png)
+![Java创建对象的过程](Java内存区域详解.assets\Java创建对象的过程.dbe33c41.png)
 
 
 
@@ -216,7 +216,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 在**类加载检查**通过后，接下来虚拟机将为新生对象**分配内存**。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。**分配方式**有 **“指针碰撞”** 和 **“空闲列表”** 两种，**选择哪种分配方式由 Java 堆是否规整决定，而 Java 堆是否规整又由所采用的垃圾收集器是否带有压缩整理功能决定**。
 
-<img src="https://javaguide.cn/assets/img/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F.9ecae4c9.png" alt="内存分配的两种方式" style="zoom:150%;" />
+<img src="Java内存区域详解.assets/内存分配的两种方式.9ecae4c9.png" alt="内存分配的两种方式" style="zoom:150%;" />
 
 在创建对象的时候有一个很重要的问题，就是线程安全，因为在实际开发过程中，创建对象是很频繁的事情，作为虚拟机来说，必须要保证线程是安全的，通常来讲，虚拟机采用两种方式来保证线程安全：
 
@@ -263,8 +263,8 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 1. **句柄：** 如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息；
 
-![对象的访问定位-使用句柄](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\对象的访问定位-使用句柄.53859387.png)
+![对象的访问定位-使用句柄](Java内存区域详解.assets\对象的访问定位-使用句柄.53859387.png)
 
 2. **直接指针：** 如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而 reference 中存储的直接就是对象的地址
 
-![对象的访问定位-直接指针](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\对象的访问定位-直接指针.c3bbe790.png)
+![对象的访问定位-直接指针](Java内存区域详解.assets\对象的访问定位-直接指针.c3bbe790.png)
