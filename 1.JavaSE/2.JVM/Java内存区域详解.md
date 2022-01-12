@@ -12,11 +12,11 @@
 
 **JDK 1.8 之前：**
 
-![img](https://javaguide.cn/assets/img/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F.150c33e1.png)
+![img](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\JVM运行时数据区域.150c33e1.png)
 
 **JDK 1.8 ：**
 
-![img](https://javaguide.cn/assets/img/Java%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9FJDK1.8.37016205.png)
+![img](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\Java运行时数据区域JDK1.8.37016205.png)
 
 **线程私有的：**
 
@@ -60,7 +60,7 @@
 - **`StackOverFlowError`：** 若 Java 虚拟机栈的内存大小不允许动态扩展，那么当线程请求栈的深度超过当前 Java 虚拟机栈的最大深度的时候，就抛出 StackOverFlowError 错误。
 - **`OutOfMemoryError`：** Java 虚拟机栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出`OutOfMemoryError`异常。
 
-![img](https://javaguide.cn/assets/img/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E7%AC%AC%E4%B8%89%E7%89%88%E7%9A%84%E7%AC%AC2%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88.5cc9c70c.png)
+![img](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\《深入理解虚拟机》第三版的第2章-虚拟机栈.5cc9c70c.png)
 
 Java 虚拟机栈也是线程私有的，每个线程都有各自的 Java 虚拟机栈，而且随着线程的创建而创建，随着线程的死亡而死亡。
 
@@ -101,11 +101,11 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 2. 老生代(Old Generation)
 3. 永生代(Permanent Generation)
 
-![JVM堆内存结构-JDK7](https://javaguide.cn/assets/img/JVM%E5%A0%86%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-JDK7.7d9166eb.png)
+![JVM堆内存结构-JDK7](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\JVM堆内存结构-JDK7.7d9166eb.png)
 
 JDK 8 版本之后方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是元空间，元空间使用的是直接内存。
 
-![JVM堆内存结构-JDK8](https://javaguide.cn/assets/img/JVM%E5%A0%86%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-jdk8.919b9959.png)
+![JVM堆内存结构-JDK8](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\JVM堆内存结构-jdk8.919b9959.png)
 
 **上图所示的 Eden 区、两个 Survivor 区都属于新生代（为了区分，这两个 Survivor 区域按照顺序被命名为 from 和 to），中间一层属于老年代。**
 
@@ -202,7 +202,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 ## 3.1 对象的创建
 
-![Java创建对象的过程](https://javaguide.cn/assets/img/Java%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BF%87%E7%A8%8B.dbe33c41.png)
+![Java创建对象的过程](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\Java创建对象的过程.dbe33c41.png)
 
 
 
@@ -253,3 +253,18 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 **对齐填充部分不是必然存在的，也没有什么特别的含义，仅仅起占位作用。** 因为 Hotspot 虚拟机的自动内存管理系统要求对象起始地址必须是 8 字节的整数倍，换句话说就是对象的大小必须是 8 字节的整数倍。而对象头部分正好是 8 字节的倍数（1 倍或 2 倍），因此，当对象实例数据部分没有对齐时，就需要通过对齐填充来补全。
 
+
+
+## 3.3 对象的访问定位
+
+建立对象就是为了使用对象，我们的 Java 程序通过栈上的 reference 数据来操作堆上的具体对象。对象的访问方式由虚拟机实现而定，目前主流的访问方式有**① 使用句柄**和**② 直接指针**两种：
+
+> 使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。
+
+1. **句柄：** 如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息；
+
+![对象的访问定位-使用句柄](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\对象的访问定位-使用句柄.53859387.png)
+
+2. **直接指针：** 如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而 reference 中存储的直接就是对象的地址
+
+![对象的访问定位-直接指针](D:\data\r2coding\1.JavaSE\2.JVM\Java内存区域详解.assets\对象的访问定位-直接指针.c3bbe790.png)
