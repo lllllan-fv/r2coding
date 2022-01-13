@@ -376,3 +376,101 @@ String str3 = new String("abcd");
 3. 一般来说，我们要尽量避免通过 new 的方式创建字符串。使用双引号声明的 `String` 对象（ `String s1 = "java"` ）更利于让编译器有机会优化我们的代码，同时也更易于阅读。
 4. 被 `final` 关键字修改之后的 `String` 会被编译器当做常量来处理，编译器程序编译期就可以确定它的值，其效果就想到于访问常量。
 
+
+
+## 4.2 String s1 = new String("abc");这句话创建了几个字符串对象？
+
+**会创建 1 或 2 个字符串：**
+
+- 如果字符串常量池中已存在字符串常量“abc”，则只会在堆空间创建一个字符串常量“abc”。
+- 如果字符串常量池中没有字符串常量“abc”，**那么它将首先在字符串常量池中创建**，然后在堆空间中创建，因此将创建总共 2 个字符串对象。
+
+
+
+## 4.3 8 种基本类型的包装类和常量池
+
+Java 基本类型的包装类的大部分都实现了常量池技术。
+
+`Byte`,`Short`,`Integer`,`Long` 这 4 种包装类默认创建了数值 **[-128，127]** 的相应类型的缓存数据，`Character` 创建了数值在 **[0,127]** 范围的缓存数据，`Boolean` 直接返回 `True` Or `False`。
+
+两种浮点数类型的包装类 `Float`,`Double` 并没有实现常量池技术。
+
+> ## 常量池技术的作用
+>
+> 常量池是为了避免频繁的创建和销毁对象而影响系统性能，其实现了对象的共享。
+> 例如字符串常量池，在编译阶段就把所有的字符串文字放到一个常量池中。
+>
+> 1. 节省内存空间：常量池中所有相同的字符串常量被合并，只占用一个空间。
+> 2. 节省运行时间：比较字符串时，==比equals()快。对于两个引用变量，只用==判断引用是否相等，也就可以判断实际值是否相等。
+
+```java
+Integer i1 = 33;
+Integer i2 = 33;
+System.out.println(i1 == i2);// 输出 true
+Integer i11 = 333;
+Integer i22 = 333;
+System.out.println(i11 == i22);// 输出 false
+Double i3 = 1.2;
+Double i4 = 1.2;
+System.out.println(i3 == i4);// 输出 false
+```
+
+
+
+### 4.3.0 整型包装类对象之间的比较
+
+![img](Java内存区域详解.assets/20210313164740893.png)
+
+
+
+### 4.3.1 `Integer` 缓存源代码
+
+```java
+/**
+*此方法将始终缓存-128 到 127（包括端点）范围内的值，并可以缓存此范围之外的其他值。
+*/
+public static Integer valueOf(int i) {
+    if (i >= IntegerCache.low && i <= IntegerCache.high)
+      return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}
+private static class IntegerCache {
+    static final int low = -128;
+    static final int high;
+    static final Integer cache[];
+}
+```
+
+
+
+### 4.3.2 `Character` 缓存源码
+
+```java
+public static Character valueOf(char c) {
+    if (c <= 127) { // must cache
+      return CharacterCache.cache[(int)c];
+    }
+    return new Character(c);
+}
+
+private static class CharacterCache {
+    private CharacterCache(){}
+
+    static final Character cache[] = new Character[127 + 1];
+    static {
+        for (int i = 0; i < cache.length; i++)
+            cache[i] = new Character((char)i);
+    }
+}
+```
+
+
+
+### 4.3.3 `Boolean` 缓存源码
+
+```java
+public static Boolean valueOf(boolean b) {
+    return (b ? TRUE : FALSE);
+}
+```
+
