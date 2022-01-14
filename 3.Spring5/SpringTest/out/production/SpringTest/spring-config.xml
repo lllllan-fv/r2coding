@@ -3,5 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- xml方式创建对象 -->
     <bean id="user" class="P3.User"></bean>
+
+    <!-- 注入属性 -->
+    <bean id="book" class="P7.Book">
+        <property name="bookName" value="呐喊"></property>
+    </bean>
 </beans>
