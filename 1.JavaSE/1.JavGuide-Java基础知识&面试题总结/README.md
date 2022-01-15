@@ -28,10 +28,18 @@
 ## 1.2 JVM & JDK & JRE
 
 1. Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。
-2. Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。
+2. JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 <u>Java 虚拟机（JVM），Java 类库，java 命令和其他的一些基础构件</u>。但是，它不能用于创建新程序。
 3. JDK 是 Java Development Kit 缩写，它是功能齐全的 Java SDK。它拥有 JRE 所拥有的一切，还有编译器（javac）和工具（如 javadoc 和 jdb）。
 
-> JDK > JRE > JVM
+> ## JDK > JRE > JVM
+>
+> [浅谈JDK、JRE、JVM区别与联系](https://blog.csdn.net/ancientear/article/details/79483592)
+>
+> 1. JVM不能单独执行class
+> 2. JRE = JVM + lib（jvm工作需要的类库）。可以执行class
+> 3. JDK包含JRE。可以开发、编译、执行
+
+![img](README.assets/0cc3f4a15d3184391a98a7b1c58f6e5f_720w.jpg)
 
 
 
