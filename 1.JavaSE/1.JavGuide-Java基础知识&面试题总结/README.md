@@ -66,9 +66,7 @@ JVM 可以理解的代码就叫做字节码（即扩展名为 `.class` 的文件
 
 
 
-## 1.5 Oracle JDK & OpenJDK
-
-不懂，先不管
+## 1.5 Oracle JDK & OpenJDK （不懂）
 
 [Java基础知识&面试题总结 | JavaGuide](https://javaguide.cn/java/basis/java基础知识总结/#oracle-jdk-vs-openjdk)
 
