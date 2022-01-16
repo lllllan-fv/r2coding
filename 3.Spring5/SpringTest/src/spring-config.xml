@@ -21,4 +21,10 @@
         <constructor-arg index="0" value="张三"/>
         <constructor-arg index="1" value="杭州"/>
     </bean>
+
+    <bean id="null-book" class="P10.Book">
+        <property name="name">
+            <null/>
+        </property>
+    </bean>
 </beans>
