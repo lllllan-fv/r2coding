@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 添加p名称空间 -->
 
     <!-- xml方式创建对象 -->
     <bean id="user" class="P3.User"></bean>
@@ -10,6 +12,9 @@
     <bean id="book" class="P7.Book">
         <property name="bookName" value="呐喊"></property>
     </bean>
+
+    <!-- 另一种set方法注入属性 - 借助p名称空间 -->
+    <bean id="book2" class="P7.Book" p:bookName="狂人日记"></bean>
 
     <!-- 有参构造 注入属性 -->
     <bean id="orders" class="P8.Orders">
