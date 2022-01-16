@@ -162,9 +162,25 @@ Java 的泛型是伪泛型，这是因为 Java 在运行期间，所有的泛型
 
 如果重写 `equals()` 时没有重写 `hashCode()` 方法的话就可能会导致 `equals` 方法判断是相等的两个对象，`hashCode` 值却不相等。
 
-
-
 更多解释见[JavaGuide #hashcode-与-equals](https://javaguide.cn/java/basis/java基础知识总结/#hashcode-与-equals)
+
+> ## hashCode的作用
+>
+> hashCode和equals有一个相同的作用，就是用作比较：
+>
+> - equals 为true的两个对象相等，false则两个对象不相等
+> - hashCode 相同的两个对象不一定相等，但不同的两个对象一定不相等
+>
+> 
+>
+> ## 为什么要有 hashCode？
+>
+> **效率**
+> 当一个对象逐渐复杂时，equals方法中的判定条件也会逐渐复杂，这个时候比较两个对象是否相等依旧使用equals的话，就会变得低效。
+>
+> 因此引出hashCode，通过一定的计算方式，为每个对象分配一个“哈希码”，让相等的对象都拥有相同的哈希码。之后需要比较两个对象的时候，先比较哈希码，如果哈希码都不相同，两个对象一定不相等。如果哈希码相同，再继续使用equals确定对象是否相等。
+>
+> hashCode 方法相对与 equals 会更加高效，通过这两步判断，来确定两个对象是否相等
 
 
 
