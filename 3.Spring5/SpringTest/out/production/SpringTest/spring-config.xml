@@ -6,8 +6,14 @@
     <!-- xml方式创建对象 -->
     <bean id="user" class="P3.User"></bean>
 
-    <!-- 注入属性 -->
+    <!-- set方法 注入属性 -->
     <bean id="book" class="P7.Book">
         <property name="bookName" value="呐喊"></property>
+    </bean>
+
+    <!-- 有参构造 注入属性 -->
+    <bean id="orders" class="P8.Orders">
+        <constructor-arg index="0" value="张三"/>
+        <constructor-arg index="1" value="杭州"/>
     </bean>
 </beans>
