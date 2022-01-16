@@ -8,6 +8,8 @@
     <!-- xml方式创建对象 -->
     <bean id="user" class="P3.User"></bean>
 
+    <!--========================注入属性的方式===============================-->
+
     <!-- set方法 注入属性 -->
     <bean id="book" class="P7.Book">
         <property name="bookName" value="呐喊"></property>
@@ -22,9 +24,20 @@
         <constructor-arg index="1" value="杭州"/>
     </bean>
 
+    <!--=========================注入特殊值================================-->
+
     <bean id="null-book" class="P10.Book">
         <property name="name">
             <null/>
+        </property>
+    </bean>
+
+    <bean id="sp-book" class="P10.Book">
+        <property name="name" value="&lt;啊哈&gt;"></property>
+    </bean>
+    <bean id="sp-book2" class="P10.Book">
+        <property name="name">
+            <value><![CDATA[<啊哈>]]></value>
         </property>
     </bean>
 </beans>
