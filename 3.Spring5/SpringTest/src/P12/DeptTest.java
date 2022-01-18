@@ -11,5 +11,8 @@ public class DeptTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         Emp emp = context.getBean("emp", Emp.class);
         System.out.println(emp);
+
+        Emp emp2 = context.getBean("emp2", Emp.class);
+        System.out.println(emp2);
     }
 }

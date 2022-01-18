@@ -46,20 +46,31 @@
 
     <!--=========================注入对象====================================-->
 
-    <!-- 外置bean -->
+    <!-- 外部bean -->
     <bean id="userService" class="P11.UserService">
         <property name="userDao" ref="userDao"/>
     </bean>
     <bean id="userDao" class="P11.UserDaoImpl"/>
 
-    <!-- 内置bean -->
+    <!-- 内部bean -->
     <bean id="emp" class="P12.Emp">
         <property name="name" value="张三"/>
         <property name="gender" value="男"/>
         <property name="dept">
-            <bean id="dept" class="P12.Dept">
+            <bean class="P12.Dept">
                 <property name="name" value="安保部"/>
             </bean>
         </property>
+    </bean>
+
+    <!--==========================级联赋值====================================-->
+    <bean id="emp2" class="P12.Emp">
+        <property name="name" value="赵四"/>
+        <property name="gender" value="男"/>
+        <property name="dept" ref="dept"/>
+        <property name="dept.name" value="技术部"/>
+    </bean>
+    <bean id="dept" class="P12.Dept">
+        <property name="name" value="财务部"/>
     </bean>
 </beans>
