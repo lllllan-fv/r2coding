@@ -32,12 +32,22 @@
         </property>
     </bean>
 
+    <!-- 转义字符 -->
     <bean id="sp-book" class="P10.Book">
-        <property name="name" value="&lt;啊哈&gt;"></property>
+        <property name="name" value="&lt;啊哈&gt;"/>
     </bean>
+
+    <!-- CDATA -->
     <bean id="sp-book2" class="P10.Book">
         <property name="name">
             <value><![CDATA[<啊哈>]]></value>
         </property>
     </bean>
+
+    <!--=========================注入对象====================================-->
+    <bean id="userService" class="P11.UserService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="userDao" class="P11.UserDaoImpl"/>
+
 </beans>
