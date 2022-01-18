@@ -18,3 +18,10 @@
 
 
 
+# 2022.1.18
+
+1. [844. 比较含退格的字符串 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/backspace-string-compare/)
+2. [977. 有序数组的平方 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
+3. [209. 长度最小的子数组 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+4. [904. 水果成篮 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/fruit-into-baskets/)
+

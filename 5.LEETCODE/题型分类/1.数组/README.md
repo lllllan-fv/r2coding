@@ -153,7 +153,7 @@ class Solution {
 
 
 
-# 移除元素
+# 移除元素/双指针
 
 
 
@@ -232,6 +232,215 @@ class Solution {
         for (int i = l, len = nums.length; i < len; ++i) {
             nums[i] = 0;
         }
+    }
+}
+```
+
+
+
+## 4-[844. 比较含退格的字符串 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/backspace-string-compare/)
+
+给定 s 和 t 两个字符串，当它们分别被输入到空白的文本编辑器后，请你判断二者是否相等。# 代表退格字符。
+
+如果相等，返回 true ；否则，返回 false 。
+
+注意：如果对空文本输入退格字符，文本继续为空。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/backspace-string-compare
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+```java
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        String ss = back(s);
+        String tt = back(t);
+        return ss.equals(tt);
+    }
+
+    public String back(String s) {
+        StringBuilder sb = new StringBuilder("");
+
+        for (int i = 0, len = s.length(); i < len; ++i) {
+            if (s.charAt(i) == '#') {
+                int sz = sb.length();
+                if (sz > 0) {
+                    sb.deleteCharAt(sz - 1);
+                }
+            } else {
+                sb.append(s.charAt(i));
+            }
+        }
+
+        return sb.toString();
+    }
+}
+```
+
+
+
+## 5-[977. 有序数组的平方 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
+
+给你一个按 **非递减顺序** 排序的整数数组 `nums`，返回 **每个数字的平方** 组成的新数组，要求也按 **非递减顺序** 排序。
+
+```java
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int idx = 0;
+        int len = nums.length;
+        for (; idx < len; ++idx) {
+            if (nums[idx] >= 0) break;
+        }
+        if (idx != 0) idx--;
+
+        int l = idx, r = idx + 1;
+        int[] ans = new int[len];
+
+        idx = 0;
+        while (l >= 0 && r < len) {
+            int lef = nums[l] * nums[l];
+            int rig = nums[r] * nums[r];
+            if (lef <= rig) {
+                --l;
+                ans[idx++] = lef;
+            } else {
+                ++r;
+                ans[idx++] = rig;
+            }
+        }
+
+        while (l >= 0) {
+            int lef = nums[l] * nums[l];
+            --l;
+            ans[idx++] = lef;
+        }
+
+        while (r < len) {
+            int rig = nums[r] * nums[r];
+            ++r;
+            ans[idx++] = rig;
+        }
+
+        return ans;
+    }
+}
+```
+
+
+
+# 滑动窗口
+
+
+
+## 1-[209. 长度最小的子数组 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+
+给定一个含有 n 个正整数的数组和一个正整数 target 。
+
+找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/minimum-size-subarray-sum
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+```java
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int len = nums.length;
+        int ans = len;
+
+        int l = 0, r = 0, sum = 0;
+        while (r < len) {
+            sum += nums[r++];
+            if (sum >= target) {
+                ans = Math.min(ans, r - l);
+            }
+            while (l < r) {
+                if (sum - nums[l] >= target) {
+                    sum -= nums[l++];
+                    ans = Math.min(ans, r - l);
+                } else {
+                    break;
+                }
+            }
+        }
+        if (sum < target) return 0;
+
+        return ans;
+    }
+}
+```
+
+
+
+## 2-[904. 水果成篮 - 力扣（LeetCode） (leetcode-cn.com)](https://leetcode-cn.com/problems/fruit-into-baskets/)
+
+你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 fruits 表示，其中 fruits[i] 是第 i 棵树上的水果 种类 。
+
+你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：
+
+你只有 两个 篮子，并且每个篮子只能装 单一类型 的水果。每个篮子能够装的水果总量没有限制。
+你可以选择任意一棵树开始采摘，你必须从 每棵 树（包括开始采摘的树）上 恰好摘一个水果 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。
+一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。
+给你一个整数数组 fruits ，返回你可以收集的水果的 最大 数目。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/fruit-into-baskets
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+```java
+class Solution {
+    class node {
+        private int num;
+        private int cnt;
+
+        public node() {
+            num = cnt = 0;
+        }
+
+        public boolean add(int x) {
+            if (cnt == 0) {
+                num = x;
+                cnt = 1;
+                return true;
+            } else if (num == x) {
+                cnt++;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public void del(int x) {
+            if (num == x && cnt > 0) {
+                cnt--;
+            }
+        }
+    }
+
+    public int totalFruit(int[] fruits) {
+        int ans = 0, right = 0;
+
+        node a = new node(), b = new node();
+
+        if (fruits.length == 0) return 0;
+        a.add(fruits[right++]);
+
+        for (int i = 0, len = fruits.length; i < len; ++i) {
+            while (right < len) {
+                if (a.add(fruits[right]) || b.add(fruits[right])) {
+                    right++;
+                } else {
+                    break;
+                }
+            }
+
+            ans = Math.max(ans, right - i);
+
+            a.del(fruits[i]);
+            b.del(fruits[i]);
+        }
+
+        return ans;
     }
 }
 ```
