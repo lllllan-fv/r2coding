@@ -45,9 +45,21 @@
     </bean>
 
     <!--=========================注入对象====================================-->
+
+    <!-- 外置bean -->
     <bean id="userService" class="P11.UserService">
         <property name="userDao" ref="userDao"/>
     </bean>
     <bean id="userDao" class="P11.UserDaoImpl"/>
 
+    <!-- 内置bean -->
+    <bean id="emp" class="P12.Emp">
+        <property name="name" value="张三"/>
+        <property name="gender" value="男"/>
+        <property name="dept">
+            <bean id="dept" class="P12.Dept">
+                <property name="name" value="安保部"/>
+            </bean>
+        </property>
+    </bean>
 </beans>
